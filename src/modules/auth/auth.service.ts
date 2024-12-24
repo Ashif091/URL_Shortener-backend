@@ -26,17 +26,17 @@ export class AuthService {
     return null;
   }
 
-  async login(email: string, password: string): Promise<{ accessToken: string }> {
+  async login(email: string, password: string): Promise<{ accessToken: string , user:User}> {
     const user = await this.validateUser(email, password);
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const payload = { email: user.email, sub: user._id };
+    const payload = { email: user.email, userId: user._id };
     const accessToken = this.jwtService.sign(payload, {
       expiresIn: '15m', 
     });
 
-    return { accessToken };
+    return { accessToken , user};
   }
 }
