@@ -1,5 +1,5 @@
 // src/url-shortener/url.controller.ts
-import { Controller, Post, Get, Put, Delete, Body, Param, Req, UseGuards } from '@nestjs/common';
+import { Controller, Post, Get, Put, Delete, Body, Param, Req } from '@nestjs/common';
 import { UrlService } from './url.service';
 import { Request } from 'express';
 import * as CryptoJS from 'crypto-js'; 
