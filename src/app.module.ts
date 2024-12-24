@@ -4,10 +4,12 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UrlModule } from './modules/url-shortener/url.module';
 import { AuthMiddleware } from './modules/auth/auth.middleware';
 import { JwtModule } from '@nestjs/jwt';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://fhyvhh091:U5b9IaU1tJm1yHNM@cluster0.10pfn.mongodb.net/url_shortener?retryWrites=true&w=majority&appName=Cluster0'), 
+    MongooseModule.forRoot(`${process.env.MONGO_URL}`), 
     JwtModule.register({
       secret: 'YOUR_SECRET_KEY',
       signOptions: { expiresIn: '1h' },
